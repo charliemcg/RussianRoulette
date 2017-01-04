@@ -17,11 +17,12 @@
             android:id="@+id/chamberTextView"
             android:layout_height="120dp"
             android:layout_weight="2"/>
-        <Button
-            android:id="@+id/chamberButton"
+        <Spinner
+            android:id="@+id/chamberSpinner"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:text="Change..."/>
+            android:text="Change..."
+            android:spinnerMode="dropdown"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"
