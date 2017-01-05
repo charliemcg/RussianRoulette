@@ -69,9 +69,6 @@ public class MainActivity extends AppCompatActivity {
         //Initialise array capable of holding a maximum of 12 chambers.
         final boolean[] chambers = new boolean[12];
 
-        //Number of bullets in gun.
-        //final int bullets = 1;
-
         TextView chamberTextView = (TextView) findViewById(R.id.chamberTextView);
         chamberTextView.setText("Chambers: ");
 
@@ -90,6 +87,9 @@ public class MainActivity extends AppCompatActivity {
         //This number represents the chamber being fired.
         final int[] i = {0};
 
+        //This number is used to compare shots fired against number of available bullets.
+        final int[] count = {0};
+
         //Game play.
         multiButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -103,17 +103,21 @@ public class MainActivity extends AppCompatActivity {
                         emptyChamber.start();
                         vibrate.vibrate(100);
                         i[0]++;
-                    //If chamber is loaded the player is informed of their death
-                    // and the game is reset.
+                    //If chamber is loaded the player is informed of their death. The game
+                    //is only reset once all bullets have been fired.
                     }else{
-                        if(bulletsNum[0] != 1){
-                            bulletsNum[0]--;
+                        //If there are still bullets left in the gun the player is simply
+                        //informed of their death but can continue playing.
+                        if(bulletsNum[0] != (count[0] + 1)){
+                            count[0]++;
                             multiButton.setText("You Died\nChambers Remaining: " +
                             ((chambersNum[0] - i[0]) -1) + "\nBullets Remaining: "
                                     + bulletsNum[0]);
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0]++;
+                            System.out.println("count: " + count[0]);
+                        //If all bullets have been fired the player can reset the game.
                         }else{
                             multiButton.setText("You Died\nPlay Again?");
                             System.out.println("Game Over");
@@ -126,18 +130,13 @@ public class MainActivity extends AppCompatActivity {
                             for (int i = 0; i < chambers.length; i++){
                                 chambers[i] = false;
                             }
-                            //set bulletsNum[0] back to spinner position here.
-                            //bulletSpinnerCreate(chambersNum, bulletsNum);
-                            /*Spinner bullSpin = (Spinner) findViewById(R.id.bulletSpinner);
-                            bulletsNum[0] = (int) bullSpin.getItemAtPosition(2);*/
-                            //bulletsNum[0] = (int) bulletSpinner.getValue();
-                            //bulletSpinnerCreate(chambersNum, bulletsNum, bulletSpinner);
+                            count[0] = 0;
                         }
                     }
                 //Puts the game into 'play' mode.
                 }else{
                     gamePlay[0] = true;
-                    //Spinner is disabled during game play.
+                    //Spinners are disabled during game play.
                     chamberSpinner.setEnabled(false);
                     bulletSpinner.setEnabled(false);
                     multiButton.setText("Pull Trigger\nChambers Remaining: " + chambersNum[0] +
@@ -150,10 +149,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void bulletSpinnerCreate(int[] chambersNum, final int[] bulletsNum, Spinner bulletSpinner) {
 
-
-        //Integer[] bulletValues = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
         final Integer[] bulletValues = new Integer[chambersNum[0]];
-        //System.out.println("Bullet values: " + bulletValues.length);
 
         for (int i = 0; i < bulletValues.length; i++){
             bulletValues[i] = i + 1;
@@ -161,8 +157,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Integer> bulletAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, bulletValues);
         bulletSpinner.setAdapter(bulletAdapter);
-
-        //bulletSpinner.setSelection(0);
 
         bulletSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener(){
@@ -191,7 +185,6 @@ public class MainActivity extends AppCompatActivity {
 
         //The list is shuffled.
         Collections.shuffle(tempArray);
-        System.out.println("tempArray: " + tempArray);
 
         //The first x number of values are selected where x is the number of bullets. These
         //randomly chosen values represent the chambers being loaded with bullets.
