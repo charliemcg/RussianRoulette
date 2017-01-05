@@ -12,12 +12,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
@@ -33,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
         //Number of chambers to be selected by user.
         final int[] chambersNum = {0};
 
+        //Number of bullets to be selected by user.
+        final int[] bulletsNum = {0};
+
         //Spinner allows user to select number of chambers. 1 to 12 inclusive.
         final Spinner chamberSpinner = (Spinner) findViewById(R.id.chamberSpinner) ;
         Integer[] chamberValues = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
@@ -47,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
                         chambersNum[0] = (int) parent.getItemAtPosition(pos);
-                        bulletSpinnerCreate(chambersNum);
+                        bulletSpinnerCreate(chambersNum, bulletsNum);
                         System.out.println("Number of chambers: " + chambersNum[0]);
                     }
                     @Override
@@ -114,15 +120,13 @@ public class MainActivity extends AppCompatActivity {
                     chamberSpinner.setEnabled(false);
                     //bulletSpinner.setEnabled(false);
                     multiButton.setText("Pull Trigger\nChambers Remaining: " + chambersNum[0]);
-                    generate(chambers, chambersNum[0], bullets);
+                    generate(chambers, chambersNum[0], bulletsNum[0]);
                 }
             }
         });
     }
 
-    private void bulletSpinnerCreate(int[] chambersNum) {
-        //Number of bullets to be selected by user.
-        final int[] bulletsNum = {0};
+    private void bulletSpinnerCreate(int[] chambersNum, final int[] bulletsNum) {
 
         //Spinner allows user to select number of bullets. One to however many
         //available chambers inclusive.
@@ -155,18 +159,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Assign bullet to random chamber.
-    public void generate(boolean[] chambers, int chambersNum, int bullets){
+    public void generate(boolean[] chambers, int chambersNum, int bulletsNum){
 
         Random random = new Random();
 
-        //Only a chamber within the specified limit is loaded with a bullet.
-        final int n = random.nextInt(chambersNum);
+        //Creating an array of integers from 1 to max number of chambers inclusive.
+        /*int[] tempArray = new int[chambersNum];
 
-        chambers[n] = true;
+        for(int i = 0; i < chambersNum; i++){
+            tempArray[i] = i;
+            System.out.println("tempArray: " + tempArray[i]);
+        }
+        Collections.shuffle(tempArray);*/
+
+        //An array list is created to the length of the number of available chambers.
+        List<Integer> tempArray = new ArrayList<>();
+
+        //The list is populated with integers 1 to max number of chambers inclusive.
+        for(int i = 0; i < chambersNum; i++){
+            tempArray.add(i);
+        }
+
+        //The list is shuffled.
+        Collections.shuffle(tempArray);
+        System.out.println("tempArray: " + tempArray);
+
+        //The first x number of values are selected where x is the number of bullets. These
+        //randomly chosen values represent the chambers being loaded with bullets.
+        for(int i = 0; i < bulletsNum; i++){
+            chambers[tempArray.get(i)] = true;
+        }
 
         //To cheat with. This prints out the chambers while showing which one is loaded.
         for (int i = 0; i < chambersNum; i++) {
             System.out.println("Chamber " + i + " : " + chambers[i]);
         }
+        System.out.println("Bullets: " + bulletsNum);
     }
 }
