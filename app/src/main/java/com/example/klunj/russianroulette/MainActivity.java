@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_spinner_dropdown_item, chamberValues);
         chamberSpinner.setAdapter(chamberAdapter);
 
+        chamberSpinner.setSelection(5);
+
         chamberSpinner.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener(){
                     @Override
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
                     // and the game is reset.
                     }else{
                         multiButton.setText("You Died\nPlay Again?");
+                        System.out.println("Game Over");
                         gunShot.start();
                         vibrate.vibrate(300);
                         i[0] = 0;
