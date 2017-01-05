@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         final int[] chambersNum = {0};
 
         //Spinner allows user to select number of chambers. 1 to 12 inclusive.
-        Spinner chamberSpinner = (Spinner) findViewById(R.id.chamberSpinner) ;
+        final Spinner chamberSpinner = (Spinner) findViewById(R.id.chamberSpinner) ;
         Integer[] chamberValues = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
         ArrayAdapter<Integer> chamberAdapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, chamberValues);
@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                         vibrate.vibrate(300);
                         i[0] = 0;
                         gamePlay[0] = false;
+                        chamberSpinner.setEnabled(true);
                         for (int i = 0; i < chambers.length; i++){
                             chambers[i] = false;
                         }
@@ -107,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
                 //Puts the game into 'play' mode.
                 }else{
                     gamePlay[0] = true;
+                    //Spinner is disabled during game play.
+                    chamberSpinner.setEnabled(false);
                     multiButton.setText("Pull Trigger\nChambers Remaining: " + chambersNum[0]);
                     generate(chambers, chambersNum[0], bullets);
                 }
