@@ -21,7 +21,6 @@
             android:id="@+id/chamberSpinner"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:text="Change..."
             android:spinnerMode="dropdown"/>
     </TableRow>
     <TableRow
@@ -31,11 +30,11 @@
             android:id="@+id/bulletTextView"
             android:layout_height="120dp"
             android:layout_weight="2" />
-        <Button
-            android:id="@+id/bulletButton"
+        <Spinner
+            android:id="@+id/bulletSpinner"
             android:layout_height="120dp"
             android:layout_weight="1"
-            android:text="Change..."/>
+            android:spinnerMode="dropdown"/>
     </TableRow>
     <TableRow
         android:layout_width="match_parent"

@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
                         chambersNum[0] = (int) parent.getItemAtPosition(pos);
+                        bulletSpinnerCreate(chambersNum);
                         System.out.println("Number of chambers: " + chambersNum[0]);
                     }
                     @Override
@@ -101,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
                         i[0] = 0;
                         gamePlay[0] = false;
                         chamberSpinner.setEnabled(true);
+                        //bulletSpinner.setEnabled(true);
                         for (int i = 0; i < chambers.length; i++){
                             chambers[i] = false;
                         }
@@ -110,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
                     gamePlay[0] = true;
                     //Spinner is disabled during game play.
                     chamberSpinner.setEnabled(false);
+                    //bulletSpinner.setEnabled(false);
                     multiButton.setText("Pull Trigger\nChambers Remaining: " + chambersNum[0]);
                     generate(chambers, chambersNum[0], bullets);
                 }
@@ -117,7 +120,41 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    //Assigns bullet to random chamber.
+    private void bulletSpinnerCreate(int[] chambersNum) {
+        //Number of bullets to be selected by user.
+        final int[] bulletsNum = {0};
+
+        //Spinner allows user to select number of bullets. One to however many
+        //available chambers inclusive.
+        final Spinner bulletSpinner = (Spinner) findViewById(R.id.bulletSpinner) ;
+        //Integer[] bulletValues = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
+        final Integer[] bulletValues = new Integer[chambersNum[0]];
+        //System.out.println("Bullet values: " + bulletValues.length);
+
+        for (int i = 0; i < bulletValues.length; i++){
+            bulletValues[i] = i + 1;
+        }
+        ArrayAdapter<Integer> bulletAdapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_dropdown_item, bulletValues);
+        bulletSpinner.setAdapter(bulletAdapter);
+
+        bulletSpinner.setSelection(0);
+
+        bulletSpinner.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener(){
+                    @Override
+                    public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
+                        bulletsNum[0] = (int) parent.getItemAtPosition(pos);
+                        System.out.println("Number of bullets: " + bulletsNum[0]);
+                    }
+                    @Override
+                    public void onNothingSelected(AdapterView<?> parent) {
+                    }
+                }
+        );
+    }
+
+    //Assign bullet to random chamber.
     public void generate(boolean[] chambers, int chambersNum, int bullets){
 
         Random random = new Random();
