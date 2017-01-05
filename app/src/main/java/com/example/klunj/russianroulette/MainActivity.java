@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!chambers[i[0]]) {
                         multiButton.setText("Pull Trigger\nChambers Remaining: " +
                                 ((chambersNum[0] - i[0]) -1) + "\nBullets Remaining: "
-                                + bulletsNum[0]);
+                                + (bulletsNum[0] - count[0]));
                         System.out.println("Empty. " + chambers[i[0]] + " " + i[0]);
                         emptyChamber.start();
                         vibrate.vibrate(100);
@@ -112,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             count[0]++;
                             multiButton.setText("You Died\nChambers Remaining: " +
                             ((chambersNum[0] - i[0]) -1) + "\nBullets Remaining: "
-                                    + bulletsNum[0]);
+                                    + (bulletsNum[0] - count[0]));
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0]++;
@@ -147,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void bulletSpinnerCreate(int[] chambersNum, final int[] bulletsNum, Spinner bulletSpinner) {
+    public void bulletSpinnerCreate(int[] chambersNum, final int[] bulletsNum,
+                                    Spinner bulletSpinner) {
 
         final Integer[] bulletValues = new Integer[chambersNum[0]];
 
