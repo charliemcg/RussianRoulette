@@ -154,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                             gamePlay[0] = false;
                             chamberSpinner.setEnabled(true);
                             bulletSpinner.setEnabled(true);
+                            multiButton.setSoundEffectsEnabled(true);
                             for (int i = 0; i < chambers.length; i++){
                                 chambers[i] = false;
                             }
@@ -166,6 +167,7 @@ public class MainActivity extends AppCompatActivity {
                     //Spinners are disabled during game play.
                     chamberSpinner.setEnabled(false);
                     bulletSpinner.setEnabled(false);
+                    multiButton.setSoundEffectsEnabled(false);
                     multiButton.setText(pullTriggerString + "\n" + chambersRemainingString
                             + " " + chambersNum[0] +
                             "\n" + bulletsRemainingString + " " + bulletsNum[0]);
