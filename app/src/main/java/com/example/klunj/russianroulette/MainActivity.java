@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.os.Handler;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -24,6 +25,17 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Initialising strings
+        final String pullTriggerString = getResources().getString(R.string.pull_trigger);
+        final String chambersRemainingString =
+                getResources().getString(R.string.chambers_remaining);
+        final String bulletsRemainingString = getResources().getString(R.string.bullets_remaining);
+        final String chambersString = getResources().getString(R.string.chambers);
+        final String bulletsString = getResources().getString(R.string.bullets);
+        final String playString = getResources().getString(R.string.play);
+        final String youDiedString = getResources().getString(R.string.you_died);
+        final String playAgainString = getResources().getString(R.string.play_again);
+
         //Initialise vibrator.
         final Vibrator vibrate = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
 
@@ -33,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Empty chamber sound clip.
         final MediaPlayer emptyChamber = MediaPlayer.create(this, R.raw.emptychamber);
+        emptyChamber.setVolume(0.5f, 0.5f);
 
         //Gun shot sound clip.
         final MediaPlayer gunShot = MediaPlayer.create(this, R.raw.gunshot);
@@ -58,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
                         chambersNum[0] = (int) parent.getItemAtPosition(pos);
                         bulletSpinnerCreate(chambersNum, bulletsNum, bulletSpinner);
-                        System.out.println("Number of chambers: " + chambersNum[0]);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -70,15 +82,15 @@ public class MainActivity extends AppCompatActivity {
         final boolean[] chambers = new boolean[12];
 
         TextView chamberTextView = (TextView) findViewById(R.id.chamberTextView);
-        chamberTextView.setText("Chambers: ");
+        chamberTextView.setText(chambersString);
 
         TextView bulletTextView = (TextView) findViewById(R.id.bulletTextView);
-        bulletTextView.setText("Bullets: ");
+        bulletTextView.setText(bulletsString);
 
         //This button is used to start or reset the game. It is also used to pull
         //the trigger during game play. Button text is updated to reflect the players actions.
         final Button multiButton = (Button) findViewById(R.id.multiPurposeButton);
-        multiButton.setText("Play");
+        multiButton.setText(playString);
 
         //True when game is in play, false when game is not in play. It's a flag used to
         //determine what the multi purpose button should do.
@@ -96,13 +108,22 @@ public class MainActivity extends AppCompatActivity {
                 if (gamePlay[0]){
                     //If chamber is empty it is incremented and text is updated accordingly.
                     if (!chambers[i[0]]) {
-                        multiButton.setText("Pull Trigger\nChambers Remaining: " +
-                                ((chambersNum[0] - i[0]) -1) + "\nBullets Remaining: "
-                                + (bulletsNum[0] - count[0]));
-                        System.out.println("Empty. " + chambers[i[0]] + " " + i[0]);
+                        multiButton.setText(pullTriggerString + "\n" + chambersRemainingString
+                                + " "
+                                +((chambersNum[0] - i[0]) -1) + "\n" + bulletsRemainingString
+                                + " " +(bulletsNum[0] - count[0]));
                         emptyChamber.start();
                         vibrate.vibrate(100);
                         i[0]++;
+                        //Multi Purpose button is briefly paused after pulling the trigger
+                        //to allow for the vibration and sound effect to play undisturbed.
+                        multiButton.setEnabled(false);
+                        new Handler().postDelayed(new Runnable() {
+                            @Override
+                            public void run(){
+                                multiButton.setEnabled(true);
+                            }
+                        }, 400);
                     //If chamber is loaded the player is informed of their death. The game
                     //is only reset once all bullets have been fired.
                     }else{
@@ -110,17 +131,23 @@ public class MainActivity extends AppCompatActivity {
                         //informed of their death but can continue playing.
                         if(bulletsNum[0] != (count[0] + 1)){
                             count[0]++;
-                            multiButton.setText("You Died\nChambers Remaining: " +
-                            ((chambersNum[0] - i[0]) -1) + "\nBullets Remaining: "
+                            multiButton.setText(youDiedString + "\n" + chambersRemainingString +
+                                    " " + ((chambersNum[0] - i[0]) -1) + "\n"
+                                    + bulletsRemainingString + " "
                                     + (bulletsNum[0] - count[0]));
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0]++;
-                            System.out.println("count: " + count[0]);
+                            multiButton.setEnabled(false);
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run(){
+                                    multiButton.setEnabled(true);
+                                }
+                            }, 800);
                         //If all bullets have been fired the player can reset the game.
                         }else{
-                            multiButton.setText("You Died\nPlay Again?");
-                            System.out.println("Game Over");
+                            multiButton.setText(youDiedString + "\n" + playAgainString);
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0] = 0;
@@ -139,8 +166,9 @@ public class MainActivity extends AppCompatActivity {
                     //Spinners are disabled during game play.
                     chamberSpinner.setEnabled(false);
                     bulletSpinner.setEnabled(false);
-                    multiButton.setText("Pull Trigger\nChambers Remaining: " + chambersNum[0] +
-                            "\nBullets Remaining: " + bulletsNum[0]);
+                    multiButton.setText(pullTriggerString + "\n" + chambersRemainingString
+                            + " " + chambersNum[0] +
+                            "\n" + bulletsRemainingString + " " + bulletsNum[0]);
                     generate(chambers, chambersNum[0], bulletsNum[0]);
                 }
             }
@@ -164,7 +192,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemSelected(AdapterView<?> parent, View v, int pos, long id){
                         bulletsNum[0] = (int) parent.getItemAtPosition(pos);
-                        System.out.println("Number of bullets: " + bulletsNum[0]);
                     }
                     @Override
                     public void onNothingSelected(AdapterView<?> parent) {
@@ -197,6 +224,5 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < chambersNum; i++) {
             System.out.println("Chamber " + i + " : " + chambers[i]);
         }
-        System.out.println("Bullets: " + bulletsNum);
     }
 }
