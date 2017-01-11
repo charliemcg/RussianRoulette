@@ -1,11 +1,11 @@
 <resources>
     <string name="app_name">RussianRoulette</string>
-    <string name="chambers">Chambers:</string>
-    <string name="bullets">Bullets:</string>
-    <string name="play">Play</string>
-    <string name="pull_trigger">Pull Trigger</string>
-    <string name="chambers_remaining">Chambers Remaining: </string>
-    <string name="bullets_remaining">Bullets Remaining: </string>
-    <string name="you_died">You Died</string>
-    <string name="play_again">Play Again?</string>
+    <string name="chambers">CHДMEBЯS:</string>
+    <string name="bullets">BULLETS:</string>
+    <string name="play">PLДУ</string>
+    <string name="pull_trigger">PULL TЯIGGEЯ</string>
+    <string name="chambers_remaining">CHДMBEЯS ЯEMДIИIИG: </string>
+    <string name="bullets_remaining">BULLETS ЯEMДIИIИG: </string>
+    <string name="you_died">УФU DIED</string>
+    <string name="play_again">PLДУ ДGДIИ?</string>
 </resources>

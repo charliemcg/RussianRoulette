@@ -6,6 +6,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         //Initialising strings
@@ -87,6 +90,10 @@ public class MainActivity extends AppCompatActivity {
         TextView bulletTextView = (TextView) findViewById(R.id.bulletTextView);
         bulletTextView.setText(bulletsString);
 
+        final TextView chambersRemainingTextView = (TextView) findViewById(R.id.chambersRemainingTextView);
+
+        final TextView bulletsRemainingTextView = (TextView) findViewById(R.id.bulletsRemainingTextView);
+
         //This button is used to start or reset the game. It is also used to pull
         //the trigger during game play. Button text is updated to reflect the players actions.
         final Button multiButton = (Button) findViewById(R.id.multiPurposeButton);
@@ -108,10 +115,9 @@ public class MainActivity extends AppCompatActivity {
                 if (gamePlay[0]){
                     //If chamber is empty it is incremented and text is updated accordingly.
                     if (!chambers[i[0]]) {
-                        multiButton.setText(pullTriggerString + "\n" + chambersRemainingString
-                                + " "
-                                +((chambersNum[0] - i[0]) -1) + "\n" + bulletsRemainingString
-                                + " " +(bulletsNum[0] - count[0]));
+                        multiButton.setText(pullTriggerString);
+                        chambersRemainingTextView.setText(chambersRemainingString + " " + ((chambersNum[0] -i[0]) - 1));
+                        bulletsRemainingTextView.setText(bulletsRemainingString + " " + (bulletsNum[0] - count[0]));
                         emptyChamber.start();
                         vibrate.vibrate(100);
                         i[0]++;
@@ -131,10 +137,9 @@ public class MainActivity extends AppCompatActivity {
                         //informed of their death but can continue playing.
                         if(bulletsNum[0] != (count[0] + 1)){
                             count[0]++;
-                            multiButton.setText(youDiedString + "\n" + chambersRemainingString +
-                                    " " + ((chambersNum[0] - i[0]) -1) + "\n"
-                                    + bulletsRemainingString + " "
-                                    + (bulletsNum[0] - count[0]));
+                            multiButton.setText(youDiedString + "\n" + pullTriggerString);
+                            chambersRemainingTextView.setText(chambersRemainingString + " " + ((chambersNum[0] - i[0]) - 1));
+                            bulletsRemainingTextView.setText(bulletsRemainingString + " " + (bulletsNum[0] - count[0]));
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0]++;
@@ -148,6 +153,8 @@ public class MainActivity extends AppCompatActivity {
                         //If all bullets have been fired the player can reset the game.
                         }else{
                             multiButton.setText(youDiedString + "\n" + playAgainString);
+                            chambersRemainingTextView.setText(chambersRemainingString + " " + ((chambersNum[0] - i[0]) - 1));
+                            bulletsRemainingTextView.setText(bulletsRemainingString + " " + (bulletsNum[0] - count[0] - 1));
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0] = 0;
@@ -168,9 +175,9 @@ public class MainActivity extends AppCompatActivity {
                     chamberSpinner.setEnabled(false);
                     bulletSpinner.setEnabled(false);
                     multiButton.setSoundEffectsEnabled(false);
-                    multiButton.setText(pullTriggerString + "\n" + chambersRemainingString
-                            + " " + chambersNum[0] +
-                            "\n" + bulletsRemainingString + " " + bulletsNum[0]);
+                    multiButton.setText(pullTriggerString);
+                    chambersRemainingTextView.setText(chambersRemainingString + " " + chambersNum[0]);
+                    bulletsRemainingTextView.setText(bulletsRemainingString + " " + bulletsNum[0]);
                     generate(chambers, chambersNum[0], bulletsNum[0]);
                 }
             }
