@@ -1,6 +1,7 @@
 package com.example.klunj.russianroulette;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -65,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
         final Spinner chamberSpinner = (Spinner) findViewById(R.id.chamberSpinner) ;
         Integer[] chamberValues = new Integer[] {1,2,3,4,5,6,7,8,9,10,11,12};
         ArrayAdapter<Integer> chamberAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, chamberValues);
+                //android.R.layout.simple_spinner_dropdown_item, chamberValues);
+                R.layout.custom_spinner, chamberValues);
         chamberSpinner.setAdapter(chamberAdapter);
 
         chamberSpinner.setSelection(5);
@@ -135,10 +137,12 @@ public class MainActivity extends AppCompatActivity {
                         i[0]++;
                         //Multi Purpose button is briefly paused after pulling the trigger
                         //to allow for the vibration and sound effect to play undisturbed.
+                        multiButton.setTextColor(Color.BLACK);
                         multiButton.setEnabled(false);
                         new Handler().postDelayed(new Runnable() {
                             @Override
                             public void run(){
+                                multiButton.setTextColor(Color.WHITE);
                                 multiButton.setEnabled(true);
                             }
                         }, 400);
@@ -157,10 +161,12 @@ public class MainActivity extends AppCompatActivity {
                             gunShot.start();
                             vibrate.vibrate(300);
                             i[0]++;
+                            multiButton.setTextColor(Color.BLACK);
                             multiButton.setEnabled(false);
                             new Handler().postDelayed(new Runnable() {
                                 @Override
                                 public void run(){
+                                    multiButton.setTextColor(Color.WHITE);
                                     multiButton.setEnabled(true);
                                 }
                             }, 800);
@@ -211,7 +217,8 @@ public class MainActivity extends AppCompatActivity {
             bulletValues[i] = i + 1;
         }
         ArrayAdapter<Integer> bulletAdapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, bulletValues);
+                //android.R.layout.simple_spinner_dropdown_item, bulletValues);
+                R.layout.custom_spinner, bulletValues);
         bulletSpinner.setAdapter(bulletAdapter);
 
         bulletSpinner.setOnItemSelectedListener(

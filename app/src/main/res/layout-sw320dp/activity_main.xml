@@ -9,41 +9,59 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.klunj.russianroulette.MainActivity"
-    android:background="@drawable/gunbackground">
+    android:background="#000000">
+    <!--android:background="@drawable/gunbackground">-->
+    
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/gunbackground"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"/>
 
     <TextView
         android:id="@+id/chamberTextView"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_marginTop="300dp"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="CHAMBERS:"
+        android:layout_above="@+id/chamberSpinner"
+        android:layout_marginBottom="25dp"/>
     <Spinner
         android:id="@+id/chamberSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_marginTop="280dp"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:spinnerMode="dropdown"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_above="@+id/stats"
+        android:layout_marginBottom="30dp"/>
 
     <TextView
         android:id="@+id/bulletTextView"
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_marginLeft="265dp"
-        android:layout_marginTop="300dp"
-        android:textColor="@color/white"/>
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:text="BULLETS:"
+        android:layout_alignParentRight="true"
+        android:layout_above="@id/bulletSpinner"
+        android:layout_marginBottom="25dp"/>
     <Spinner
         android:id="@+id/bulletSpinner"
-        android:layout_width="wrap_content"
-        android:layout_height="120dp"
-        android:layout_marginLeft="265dp"
-        android:layout_marginTop="280dp"
+        android:layout_width="70dp"
+        android:layout_height="20dp"
         android:spinnerMode="dropdown"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:layout_alignTop="@+id/chamberSpinner"
+        android:layout_alignRight="@+id/bulletTextView"
+        android:layout_above="@+id/stats"
+        android:layout_marginBottom="30dp"/>
+
     <TableLayout
+        android:id="@+id/stats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="375dp">
+        android:layout_above="@+id/multiPurposeButton"
+        android:layout_marginBottom="20dp">
         <TableRow>
             <TextView
                 android:id="@+id/chambersRemainingTextView"
@@ -51,14 +69,15 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:text="CHAMBERS REMAINING:"/>
             <TextView
                 android:id="@+id/chambersRemainingValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:textColor="@color/white"
-                />
+                android:text="6"/>
         </TableRow>
         <TableRow
             android:layout_weight="1">
@@ -68,14 +87,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:text="BULLETS REMAINING:"/>
             <TextView
                 android:id="@+id/bulletsRemainingValue"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textColor="@color/white"/>
-            </TableRow>
+                android:textColor="@color/white"
+                android:text="1"/>
+        </TableRow>
     </TableLayout>
 
     <Button
@@ -88,6 +109,9 @@
         android:shadowDy="-1"
         android:shadowRadius="5"
         android:textColor="@color/white"
-        android:layout_marginTop="425dp"/>
+        android:text="YOU DIED\nPULLTRIGGER"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
