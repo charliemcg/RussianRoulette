@@ -16,6 +16,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.os.Handler;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -25,12 +29,25 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private InterstitialAd mInterstitial;
+    int interstitial = 0;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
+
+        //Initialising interstitial ad
+        mInterstitial = new InterstitialAd(this);
+        mInterstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");//To do. Get an actual ID
+        AdRequest request = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        mInterstitial.loadAd(request);
+
+        AdView adView = (AdView)findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        adView.loadAd(adRequest);
 
         //Initialising strings
         final String pullTriggerString = getResources().getString(R.string.pull_trigger);
@@ -127,6 +144,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (gamePlay[0]){
                     //If chamber is empty it is incremented and text is updated accordingly.
+                    //Interstitial ad is displayed
+                    if(mInterstitial.isLoaded() && (interstitial == 1 || interstitial == 6 || interstitial == 21 )){//Make so that more than one interstitial shows
+                        mInterstitial.show();
+                    }
                     if (!chambers[i[0]]) {
                         multiButton.setText(pullTriggerString);
                         chambersRemainingTextView.setText(chambersRemainingString);
@@ -189,6 +210,7 @@ public class MainActivity extends AppCompatActivity {
                                 chambers[i] = false;
                             }
                             count[0] = 0;
+                            interstitial++;
                         }
                     }
                 //Puts the game into 'play' mode.

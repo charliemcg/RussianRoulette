@@ -6,11 +6,18 @@
         android:topRightRadius="8dp"
         android:bottomLeftRadius="8dp"
         android:bottomRightRadius="8dp"/>
-    <gradient
+    <!--<gradient
         android:angle="315"
         android:centerX="35%"
         android:centerColor="#522906"
         android:endColor="#F0A82B"
+        android:startColor="#111111"
+        android:type="linear"/>-->
+    <gradient
+        android:angle="315"
+        android:centerX="35%"
+        android:centerColor="#333333"
+        android:endColor="#999999"
         android:startColor="#111111"
         android:type="linear"/>
     <size
