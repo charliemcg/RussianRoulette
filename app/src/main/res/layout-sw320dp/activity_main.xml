@@ -5,20 +5,15 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="0dp"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.klunj.russianroulette.MainActivity"
     android:background="#000000">
-    <!--android:background="@drawable/gunbackground">-->
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/gunbackground"
-        android:scaleType="fitCenter"
-        android:adjustViewBounds="true"/>
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter" />
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -36,7 +31,8 @@
         android:textColor="@color/white"
         android:text="CHAMBERS:"
         android:layout_above="@+id/chamberSpinner"
-        android:layout_marginBottom="25dp"/>
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="10dp"/>
     <Spinner
         android:id="@+id/chamberSpinner"
         android:layout_width="70dp"
@@ -44,7 +40,16 @@
         android:spinnerMode="dropdown"
         android:textColor="@color/white"
         android:layout_above="@+id/stats"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_alignLeft="@+id/chamberTextView"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/chevron"
+        android:layout_alignRight="@+id/chamberSpinner"
+        android:layout_alignBottom="@+id/chamberSpinner"
+        android:layout_marginRight="8dp"/>
 
     <TextView
         android:id="@+id/bulletTextView"
@@ -54,7 +59,8 @@
         android:text="BULLETS:"
         android:layout_alignParentRight="true"
         android:layout_above="@id/bulletSpinner"
-        android:layout_marginBottom="25dp"/>
+        android:layout_marginBottom="25dp"
+        android:layout_marginRight="10dp"/>
     <Spinner
         android:id="@+id/bulletSpinner"
         android:layout_width="70dp"
@@ -64,7 +70,15 @@
         android:layout_alignTop="@+id/chamberSpinner"
         android:layout_alignRight="@+id/bulletTextView"
         android:layout_above="@+id/stats"
-        android:layout_marginBottom="30dp"/>
+        android:layout_marginBottom="10dp"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/chevron"
+        android:layout_alignRight="@+id/bulletSpinner"
+        android:layout_alignBottom="@+id/bulletSpinner"
+        android:layout_marginRight="8dp"/>
 
     <TableLayout
         android:id="@+id/stats"
@@ -79,7 +93,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:layout_marginLeft="20dp"/>
             <TextView
                 android:id="@+id/chambersRemainingValue"
                 android:layout_width="match_parent"
@@ -95,7 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:textAlignment="center"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:layout_marginLeft="2dp"/>
             <TextView
                 android:id="@+id/bulletsRemainingValue"
                 android:layout_width="match_parent"
@@ -117,7 +133,9 @@
         android:textColor="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"/>
 
 </RelativeLayout>
 

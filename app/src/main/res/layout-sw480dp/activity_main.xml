@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
-        ads:adSize="BANNER"
+        ads:adSize="FULL_BANNER"
         ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
 
     <TextView
@@ -41,12 +41,21 @@
     <Spinner
         android:id="@+id/chamberSpinner"
         android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:spinnerMode="dropdown"
         android:layout_toLeftOf="@+id/stats"
         android:layout_above="@+id/multiPurposeButton"
-        android:layout_alignLeft="@+id/multiPurposeButton"
+        android:layout_marginBottom="10dp"
+        android:layout_alignRight="@+id/chamberTextView"
         android:textColor="@color/white"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/chevron"
+        android:layout_alignRight="@+id/chamberSpinner"
+        android:layout_alignBottom="@+id/chamberSpinner"
+        android:layout_marginRight="12dp"/>
 
     <TextView
         android:id="@+id/bulletTextView"
@@ -60,20 +69,27 @@
     <Spinner
         android:id="@+id/bulletSpinner"
         android:layout_width="70dp"
-        android:layout_height="20dp"
+        android:layout_height="30dp"
         android:spinnerMode="dropdown"
         android:textColor="@color/white"
         android:layout_alignTop="@+id/chamberSpinner"
         android:layout_alignRight="@+id/bulletTextView"
-        android:layout_above="@+id/stats"
-        android:layout_marginBottom="30dp"/>
+        android:layout_above="@+id/multiPurposeButton"/>
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:src="@drawable/chevron"
+        android:layout_alignRight="@+id/bulletSpinner"
+        android:layout_alignBottom="@+id/chamberSpinner"
+        android:layout_marginRight="12dp"/>
 
     <TableLayout
         android:id="@+id/stats"
         android:layout_width="400dp"
         android:layout_height="wrap_content"
         android:layout_above="@+id/multiPurposeButton"
-        android:layout_marginLeft="100dp"
+        android:layout_marginLeft="165dp"
         android:layout_marginBottom="20dp">
         <TableRow>
             <TextView
