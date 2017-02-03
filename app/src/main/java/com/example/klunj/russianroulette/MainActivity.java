@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
                 if (gamePlay[0]){
                     //If chamber is empty it is incremented and text is updated accordingly.
                     //Interstitial ad is displayed
-                    if(mInterstitial.isLoaded() && (interstitial == 1 || interstitial == 6 || interstitial == 21 )){//Make so that more than one interstitial shows
+                    if(mInterstitial.isLoaded() && (interstitial == 6)){
                         mInterstitial.show();
                     }
                     if (!chambers[i[0]]) {
