@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     private InterstitialAd mInterstitial;
     int interstitial = 0;
+    boolean bannerDisplay = true;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,12 +42,13 @@ public class MainActivity extends AppCompatActivity {
         //Initialising interstitial ad
         mInterstitial = new InterstitialAd(this);
         mInterstitial.setAdUnitId("ca-app-pub-3940256099942544/1033173712");//To do. Get an actual ID
-        AdRequest request = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        mInterstitial.loadAd(request);
+        AdRequest inRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        mInterstitial.loadAd(inRequest);
 
-        AdView adView = (AdView)findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
-        adView.loadAd(adRequest);
+        //Initialising banner ad
+        final AdView adView = (AdView)findViewById(R.id.adView);
+        final AdRequest banRequest = new AdRequest.Builder().addTestDevice(AdRequest.DEVICE_ID_EMULATOR).build();
+        //adView.loadAd(banRequest);
 
         //Initialising strings
         final String pullTriggerString = getResources().getString(R.string.pull_trigger);
@@ -143,7 +145,12 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (gamePlay[0]){
                     //If chamber is empty it is incremented and text is updated accordingly.
-                    //Interstitial ad is displayed
+                    //Banner ad is displayed after one game play
+                    if (interstitial == 1 && bannerDisplay == true){
+                        adView.loadAd(banRequest);
+                        bannerDisplay = false;
+                    }
+                    //Interstitial ad is displayed after six game plays
                     if(mInterstitial.isLoaded() && (interstitial == 6)){
                         mInterstitial.show();
                     }
