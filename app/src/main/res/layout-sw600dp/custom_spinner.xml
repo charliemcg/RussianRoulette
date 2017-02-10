@@ -5,6 +5,8 @@
     android:id="@+id/textView"
     android:layout_width="100dp"
     android:layout_height="60dp"
-    android:textSize="30dp"
-    android:gravity="left"
-    android:padding="10dip"/>
+    android:textSize="30sp"
+    android:gravity="start"
+    android:paddingStart="10dip"
+    android:paddingLeft="10dip"
+    android:background="@color/black"/>

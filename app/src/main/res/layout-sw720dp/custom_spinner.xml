@@ -3,8 +3,14 @@
 <TextView
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/textView"
-    android:layout_width="100dp"
-    android:layout_height="60dp"
-    android:textSize="30dp"
-    android:gravity="left"
-    android:padding="10dip"/>
+    android:layout_width="150dp"
+    android:layout_height="80dp"
+    android:textSize="32sp"
+    android:gravity="start"
+    android:paddingLeft="30dip"
+    android:paddingRight="10dip"
+    android:paddingStart="30dip"
+    android:paddingEnd="10dip"
+    android:paddingTop="10dip"
+    android:paddingBottom="10dip"
+    android:background="@color/black"/>
