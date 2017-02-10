@@ -4,7 +4,7 @@ android {
     compileSdkVersion 24
     buildToolsVersion "24.0.2"
     defaultConfig {
-        applicationId "com.example.klunj.russianroulette"
+        applicationId "com.violenthoboenterprises.russianroulette"
         minSdkVersion 15
         targetSdkVersion 24
         versionCode 1
@@ -26,5 +26,5 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:24.2.1'
     testCompile 'junit:junit:4.12'
-    compile 'com.google.android.gms:play-services-ads:8.3.0'//Change this to actual latest version
+    compile 'com.google.android.gms:play-services-ads:8.3.0'//TODO. Change this to actual latest version
 }

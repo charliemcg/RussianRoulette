@@ -5,15 +5,15 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.klunj.russianroulette.MainActivity"
-    android:background="#000000">
+    tools:context="com.violenthoboenterprises.russianroulette.MainActivity"
+    android:background="@color/black">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/gunbackground"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter" />
+        android:scaleType="fitCenter"/>
 
     <com.google.android.gms.ads.AdView
         android:id="@+id/adView"
@@ -22,63 +22,74 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentTop="true"
         ads:adSize="BANNER"
-        ads:adUnitId="ca-app-pub-3940256099942544/6300978111"/>
+        ads:adUnitId=""/>
+    <!--ads:adUnitId="ca-app-pub-3940256099942544/6300978111"-->
+    <!--TODO! Get actual ID-->
 
     <TextView
         android:id="@+id/chamberTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:text="CHAMBERS:"
+        android:text="@string/chambers"
         android:layout_above="@+id/chamberSpinner"
         android:layout_marginBottom="25dp"
-        android:layout_marginLeft="10dp"/>
+        android:layout_marginStart="10dp"
+        android:layout_marginLeft="10dp" />
     <Spinner
         android:id="@+id/chamberSpinner"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="20dp"
         android:spinnerMode="dropdown"
         android:textColor="@color/white"
         android:layout_above="@+id/stats"
         android:layout_marginBottom="10dp"
-        android:layout_alignLeft="@+id/chamberTextView"/>
+        android:layout_alignStart="@+id/chamberTextView"
+        android:layout_alignLeft="@+id/chamberTextView" />
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/chevron"
-        android:layout_alignRight="@+id/chamberSpinner"
+        android:layout_alignEnd="@+id/chamberSpinner"
         android:layout_alignBottom="@+id/chamberSpinner"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginEnd="8dp"
+        android:layout_alignRight="@+id/chamberSpinner"
+        android:layout_marginRight="8dp" />
 
     <TextView
         android:id="@+id/bulletTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        android:text="BULLETS:"
-        android:layout_alignParentRight="true"
+        android:text="@string/bullets"
+        android:layout_alignParentEnd="true"
         android:layout_above="@id/bulletSpinner"
         android:layout_marginBottom="25dp"
-        android:layout_marginRight="10dp"/>
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp" />
     <Spinner
         android:id="@+id/bulletSpinner"
-        android:layout_width="70dp"
+        android:layout_width="80dp"
         android:layout_height="20dp"
         android:spinnerMode="dropdown"
         android:textColor="@color/white"
         android:layout_alignTop="@+id/chamberSpinner"
-        android:layout_alignRight="@+id/bulletTextView"
         android:layout_above="@+id/stats"
-        android:layout_marginBottom="10dp"/>
+        android:layout_marginBottom="10dp"
+        android:layout_alignEnd="@+id/bulletTextView"
+        android:layout_alignRight="@+id/bulletTextView" />
 
     <ImageView
         android:layout_width="20dp"
         android:layout_height="20dp"
         android:src="@drawable/chevron"
-        android:layout_alignRight="@+id/bulletSpinner"
+        android:layout_alignEnd="@+id/bulletSpinner"
         android:layout_alignBottom="@+id/bulletSpinner"
-        android:layout_marginRight="8dp"/>
+        android:layout_marginEnd="8dp"
+        android:layout_alignRight="@+id/bulletSpinner"
+        android:layout_marginRight="8dp" />
 
     <TableLayout
         android:id="@+id/stats"
@@ -94,7 +105,8 @@
                 android:layout_weight="3"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:layout_marginLeft="20dp"/>
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="20dp" />
             <TextView
                 android:id="@+id/chambersRemainingValue"
                 android:layout_width="match_parent"
@@ -111,7 +123,8 @@
                 android:layout_weight="3"
                 android:textAlignment="center"
                 android:textColor="@color/white"
-                android:layout_marginLeft="2dp"/>
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp" />
             <TextView
                 android:id="@+id/bulletsRemainingValue"
                 android:layout_width="match_parent"
@@ -138,5 +151,3 @@
         android:layout_marginRight="10dp"/>
 
 </RelativeLayout>
-
-<!--http://www.istockphoto.com/photo/gun-barrel-gm184658532-17824942?st=_p_gun%20barrel-->
