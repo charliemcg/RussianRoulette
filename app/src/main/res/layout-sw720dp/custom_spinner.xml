@@ -8,7 +8,7 @@
     android:textSize="32sp"
     android:gravity="start"
     android:paddingLeft="30dip"
-    android:paddingRight="10dip"
+    android:paddingRight="40dp"
     android:paddingStart="30dip"
     android:paddingEnd="10dip"
     android:paddingTop="10dip"

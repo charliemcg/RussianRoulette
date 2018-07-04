@@ -11,7 +11,3 @@
     <string name="banner_ad_unit_id">ca-app-pub-2378583121223638/5662475907</string>
     <string name="interstitial_ad_unit_id">ca-app-pub-2378583121223638/1731803901</string>
 </resources>
-<!--TODO get real ad unit IDs-->
-<!--Test ad IDs-->
-<!--<string name="banner_ad_unit_id">ca-app-pub-3940256099942544/6300978111</string>
-<string name="interstitial_ad_unit_id">ca-app-pub-3940256099942544/1033173712</string>-->

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Ruleta Rusa</string>
+    <string name="chambers">ЯECÁMДЯДS:</string>
+    <string name="bullets">BДLДS:</string>
+    <string name="play">JUGДЯ</string>
+    <string name="pull_trigger">ДPЯETДЯ EL GДTILLФ</string>
+    <string name="chambers_remaining">ЯECÁMДЯДS ЯESTДИTES: </string>
+    <string name="bullets_remaining">BДLДS ЯESTДИTES: </string>
+    <string name="you_died">MФЯISTE</string>
+    <string name="play_again">¿JUGДЯ DE ИUEVФ?</string>
+    <string name="banner_ad_unit_id">ca-app-pub-2378583121223638/5662475907</string>
+    <string name="interstitial_ad_unit_id">ca-app-pub-2378583121223638/1731803901</string>
+</resources>

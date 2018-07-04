@@ -9,4 +9,5 @@
         android:gravity="start"
         android:paddingStart="10dip"
         android:paddingLeft="10dip"
+        android:paddingRight="40dip"
         android:background="@color/black"/>
